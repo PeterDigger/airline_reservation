@@ -1,3 +1,5 @@
+package mira;
+
 import java.util.*;
 public class AirJamaica 
 {

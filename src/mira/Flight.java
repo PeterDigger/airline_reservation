@@ -1,3 +1,5 @@
+package mira;
+
 public class Flight 
 {
   private String origin; 
@@ -19,6 +21,8 @@ public class Flight
      public String toString()
     {
         String result = "";
+        
+        
         
         result += "\n\nFlight Information: \n"
                     +"\tDate: "+date_of_flight

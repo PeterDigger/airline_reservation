@@ -1,3 +1,5 @@
+package mira;
+
 public class Airplane 
 {
     private String make;

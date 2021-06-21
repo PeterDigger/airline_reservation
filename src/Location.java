@@ -1,5 +1,6 @@
 import java.util.*;
 
+@SuppressWarnings("unused")
 public class Location extends Flight{
 	
 	String origin;

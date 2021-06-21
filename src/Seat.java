@@ -5,8 +5,8 @@ public class Seat extends Flight{
 	ArrayList<String> seatArray = new ArrayList<String>();
 	boolean seatFull;
 	
-	Seat(){
-		super();
+	public Seat(){
+
 	}
 	
 	public ArrayList<String> getSeatArray(){

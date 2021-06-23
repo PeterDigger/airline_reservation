@@ -1,10 +1,14 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+
 public class Controller {
 	
 	private AddOnsPanel addOnsPanel;
 	private AddOns addOns;
+	private Login login;
+	private JFrame mainFrame;
 	
 	//this constructor is for Add Ons
 	//it relates the model to the interface
@@ -13,6 +17,13 @@ public class Controller {
 		this.addOns = addOns;
 		
 		this.addOnsPanel.addPanelListener(new PanelListener());
+	}
+	
+	public Controller(Login login, JFrame mainFrame) {
+		this.login = login;
+		this.mainFrame = mainFrame;
+		
+		this.login.addLoginListener(new LoginListener());
 	}
 	
 	//remember to make other kind of constructor for other panels
@@ -33,8 +44,18 @@ public class Controller {
 					+ addOns.getLuggage() + " "
 					+ "RM" + addOns.getPrice()
 					);
+			
 		}
-		
+	}
+
+	class LoginListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			login.getLoginFrame().dispose();
+			mainFrame.setVisible(true);
+			
+		}
 	}
 	
 }

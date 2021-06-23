@@ -13,7 +13,7 @@ public class Insurance {
 		priceList = new ArrayList<Double>();
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File("src\\data\\insurance.txt")); 
+			scanner = new Scanner(new File("resource\\data\\insurance.txt")); 
 			scanner.useDelimiter(",");
 			while (scanner.hasNext()) {
 				if(scanner.hasNextDouble()) {

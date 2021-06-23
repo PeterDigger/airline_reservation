@@ -13,7 +13,7 @@ public class Food {
 		priceList = new ArrayList<Double>();
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File("src\\data\\food.txt")); 
+			scanner = new Scanner(new File("resource\\data\\food.txt")); 
 			scanner.useDelimiter(",");
 			while (scanner.hasNext()) {
 				if(scanner.hasNextDouble()) {

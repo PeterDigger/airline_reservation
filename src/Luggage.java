@@ -13,7 +13,7 @@ public class Luggage {
 		priceList = new ArrayList<Double>();
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File("src\\data\\luggage.txt")); 
+			scanner = new Scanner(new File("resource\\data\\luggage.txt")); 
 			scanner.useDelimiter(",");
 			while (scanner.hasNext()) {
 				if(scanner.hasNextDouble()) {

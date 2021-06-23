@@ -3,23 +3,24 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class AddOnsPanel extends Panel {
+public class AddOnsPanel {
 	
-	Insurance insurance;
-	Food food;
-	Luggage luggage;
+	private Insurance insurance;
+	private Food food;
+	private Luggage luggage;
 	
-	JLabel insuranceLabel;
-	JLabel foodLabel;
-	JLabel luggageLabel;
-	JLabel selected;
+	private JLabel insuranceLabel;
+	private JLabel foodLabel;
+	private JLabel luggageLabel;
+	private JLabel selected;
 	
-	JComboBox insuranceCBox;
-	JComboBox foodCBox;
-	JComboBox luggageCBox;
+	private JComboBox insuranceCBox;
+	private JComboBox foodCBox;
+	private JComboBox luggageCBox;
 	
-	JButton button;
-	JPanel addOnsPanel;
+	private JButton button;
+	
+	private JPanel addOnsPanel;
 	
 	public AddOnsPanel() {
 		
@@ -40,6 +41,12 @@ public class AddOnsPanel extends Panel {
 		button.setFocusable(false);
 		
 		addOnsPanel = new JPanel();
+		//addOnsPanel.setLayout(new BoxLayout(addOnsPanel, BoxLayout.Y_AXIS));
+		//addOnsPanel.setLayout(null);
+		//addOnsPanel.add(Box.createRigidArea(new Dimension(0,50)));
+		//addOnsPanel.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
+		//addOnsPanel.add(Box.createHorizontalGlue());
+		//addOnsPanel.add(Box.createVerticalGlue());
 		addOnsPanel.add(insuranceLabel);
 		addOnsPanel.add(insuranceCBox);
 		addOnsPanel.add(foodLabel);

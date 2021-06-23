@@ -1,9 +1,7 @@
-import java.sql.Time;
-
 public class Flight {
 
 	String flightID;
-	Time time;
+	time time;
 	Location location;
 	Airplane airplane;
 	Seat seat;
@@ -18,7 +16,7 @@ public class Flight {
 		return flightID;
 	}
 	
-	public Time getTime() {
+	public time getTime() {
 		return time;
 	}
 	
@@ -30,7 +28,7 @@ public class Flight {
 		return airplane;
 	}
 	
-	public Seat getSeat() {
+	public Seat getSeatNo() {
 		return seat;
 	}
 	

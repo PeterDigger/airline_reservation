@@ -1,20 +1,34 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.*;
 
-public class Seat extends Flight{
+public class Seat {
 	
-	ArrayList<String> seatArray = new ArrayList<String>();
-	boolean seatFull;
+	private String seatPosition;
+	private ArrayList<String> reservedSeat;
 	
-	public Seat(){
+	public Seat(String date, String Flight){	
 
+		try (Scanner ough = new Scanner(new FileReader("src\\data\\customer.txt"));) {
+	        ough.useDelimiter(",");
+	        while (ough.hasNextLine()) {
+	        	Scanner oughs = new Scanner(ough.nextLine());
+	            while (oughs.hasNext()) {
+	                reservedSeat.add(oughs.next());
+	            }
+	        }
+	        
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();  
+	    }
 	}
-	
-	public ArrayList<String> getSeatArray(){
-		return seatArray;
+
+	public ArrayList<String> getListofReservedSeat() {
+		return reservedSeat;
 	}
-	
-	public boolean isSeatFull(){
-		return seatFull;
+
+	public String getSeatPosition(){
+		return seatPosition;
 	}
 	
 }

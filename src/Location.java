@@ -1,21 +1,35 @@
+import java.io.*;
 import java.util.*;
 
-@SuppressWarnings("unused")
-public class Location extends Flight{
+public class Location{
 	
-	String origin;
-	String destination;
+	private ArrayList<String> origin;
+	private ArrayList<String> destination;
 	
-	Location(){
-		super();
-	}
-	
-	public String getOrigin(){
+	// start of constructor
+	public Location(){
+		origin = new ArrayList<String>();
+		destination = new ArrayList<String>();
+		Scanner loco;
+		try {
+			loco = new Scanner(new File("src\\data\\country.txt")); 
+			loco.useDelimiter(",");
+			while (loco.hasNext()) {
+				origin.add(loco.next());
+				destination.add(loco.next());
+			}
+			loco.close();
+		}
+		catch (FileNotFoundException error) {
+			error.printStackTrace();
+		}
+	}// end of constructor
+
+	public ArrayList<String> getOrigin(){
 		return origin;
 	}
 	
-	public String getDestination(){
+	public ArrayList<String> getDestination(){
 		return destination;
 	}
-	
 }

@@ -13,9 +13,13 @@ public class Main {
 		UIManager.put("TabbedPane.selected", Color.decode("#1840ED"));
 		
 		ImageIcon logo = null;
+		ImageIcon home = null;
+		ImageIcon booking = null;
 		
 		try{
 			logo = new ImageIcon("resource\\image\\airplane.png");
+			home = new ImageIcon("resource\\image\\home.png");
+			booking = new ImageIcon("resource\\image\\booking.png");
 		} 
 		catch (NullPointerException e) {
 			e.printStackTrace();
@@ -41,11 +45,11 @@ public class Main {
 		//frame.setLayout(new BorderLayout(10,10));
 		//frame.add(addOnsPanel.getAddOnsPanel());
 		mainFrame.add(tp);
-		tp.setFont(new Font("Dialog", Font.BOLD, 24));
+		tp.setFont(new Font("Dialog", Font.BOLD, 36));
 		tp.setForeground(Color.white);
 		tp.setBackground(Color.decode("#2C386E"));
-		tp.add("Home", homePanel.getHomePanel());
-		tp.add("Booking", addOnsPanel.getAddOnsPanel());
+		tp.addTab("Home", home, homePanel.getHomePanel());
+		tp.addTab("Booking", booking, addOnsPanel.getAddOnsPanel());
 		mainFrame.setSize(1080, 600);
 		//frame.setResizable(false);
 		mainFrame.setVisible(false);

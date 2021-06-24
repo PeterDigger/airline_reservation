@@ -5,23 +5,23 @@ import java.util.Scanner;
 
 public class Airplane{ // the GUI seat will ask this for seat number
 	
-	private ArrayList<String> airplaneModel;
+	private ArrayList<String> airplaneModelList;
 	private String flightClass;
-	private int seatNo;
+	private int airplaneSeatNo;
 	
 	public Airplane(boolean economy){
 		if (economy) {
-			this.seatNo = 24;		//economy class
+			this.airplaneSeatNo = 24;		//economy class
 			this.flightClass = "Economy ";
 		}else {
-			this.seatNo = 50;		//business class
+			this.airplaneSeatNo = 50;		//business class
 			this.flightClass = "Business ";
 		}
 		
-		try (Scanner ough = new Scanner(new FileReader("src\\data\\flight.txt"));) {
+		try (Scanner ough = new Scanner(new FileReader("resource\\data\\flightmodel.txt"));) {
 	        ough.useDelimiter(",");
 	        while (ough.hasNextLine()) {
-				airplaneModel.add(ough.next());
+				airplaneModelList.add(ough.next());
 	        }
 	    } catch (FileNotFoundException e) {
 	        e.printStackTrace();
@@ -29,16 +29,16 @@ public class Airplane{ // the GUI seat will ask this for seat number
 	
 	}
 	
-	public ArrayList<String> getAirplaneModel() {
-		return airplaneModel;
+	public ArrayList<String> getAirplaneModeList() {
+		return airplaneModelList;
 	}
 	
 	public String getFlightClass() {
 		return flightClass;
 	}
 	
-	public int getSeatNo(){
-		return seatNo;
+	public int getAirplaneSeatNo(){
+		return airplaneSeatNo;
 	}
 	
 }

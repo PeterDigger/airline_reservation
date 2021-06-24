@@ -3,20 +3,17 @@ import java.util.*;
 
 public class Location{
 	
-	private ArrayList<String> origin;
-	private ArrayList<String> destination;
+	private ArrayList<String> countryList;
 	
 	// start of constructor
 	public Location(){
-		origin = new ArrayList<String>();
-		destination = new ArrayList<String>();
+		countryList = new ArrayList<String>();
 		Scanner loco;
 		try {
-			loco = new Scanner(new File("src\\data\\country.txt")); 
+			loco = new Scanner(new File("resource\\data\\country.txt")); 
 			loco.useDelimiter(",");
 			while (loco.hasNext()) {
-				origin.add(loco.next());
-				destination.add(loco.next());
+				countryList.add(loco.next());
 			}
 			loco.close();
 		}
@@ -25,11 +22,7 @@ public class Location{
 		}
 	}// end of constructor
 
-	public ArrayList<String> getOrigin(){
-		return origin;
+	public ArrayList<String> getCountryList(){
+		return countryList;
 	}
-	
-	public ArrayList<String> getDestination(){
-		return destination;
-	}
-}
+}	

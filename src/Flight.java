@@ -1,7 +1,5 @@
-import java.util.ArrayList;
 
 public class Flight {
-	private String flightID;
 	private String destination;
 	private String arrival;
 	private String departureTime;

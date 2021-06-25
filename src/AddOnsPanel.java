@@ -1,19 +1,18 @@
 import javax.swing.*;
-import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.border.Border;
 
-import org.jdatepicker.JDatePicker;
 import org.jdatepicker.impl.*;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Properties;
-import java.util.Calendar;
 import java.util.Date;
 
+//private JTextArea text;
+
+@SuppressWarnings({ "unchecked", "rawtypes" })
 
 public class AddOnsPanel{
 	
@@ -44,7 +43,7 @@ public class AddOnsPanel{
 	
 	private JButton search;
 	private JButton button;
-	private JRadioButton Eco, Bus, Rou, Sin, a, b, c, d;
+	private JRadioButton Eco, Bus, Rou, Sin;
 	
 	private JPanel Panel;
 	private JPanel leftPanel;
@@ -72,7 +71,6 @@ public class AddOnsPanel{
 	JDatePickerImpl arrivaldatePicker;
 	
 	
-//	private JTextArea text;
 
 	public AddOnsPanel() {
 //// Content (Meat) -------------------------------------------------------------		

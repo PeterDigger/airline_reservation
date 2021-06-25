@@ -3,6 +3,7 @@ import javax.swing.JFormattedTextField.AbstractFormatter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+@SuppressWarnings("serial")
 public class DateLabelFormatter extends AbstractFormatter {
 
 	private String datePattern = "yyyyMMdd";

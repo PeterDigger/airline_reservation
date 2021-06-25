@@ -1,5 +1,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -90,11 +94,32 @@ public class Controller {
 	
 	class LoginListener implements ActionListener{
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			login.getLoginFrame().dispose();
-			mainFrame.setVisible(true);
-			
-		}
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Scanner scanner;
+            try {
+                ArrayList<String> input = new ArrayList<String>();
+                
+                scanner = new Scanner(new File("resource\\data\\registered.txt")); 
+                scanner.useDelimiter(",");
+                
+                while (scanner.hasNext()) {
+                        input.add(scanner.next());
+                    }
+                scanner.close();
+                
+                if (login.getUserText().equals("Chong Ceena") & login.getPassword().equals("1234")) {
+                    login.getLoginFrame().dispose();
+                    mainFrame.setVisible(true);
+                }
+                else {
+                    login.getError().setText("Wrong Username or PassWord!");
+                }
+            }
+            catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+
+        }
 	}
 }

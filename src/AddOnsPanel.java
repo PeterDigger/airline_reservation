@@ -26,7 +26,8 @@ public class AddOnsPanel{
 	private JLabel desLabel;
 	private JLabel classLabel;
 	private JLabel tripLabel;
-	private JLabel dateLabel;
+	private JLabel dategoLabel;
+	private JLabel datebackLabel;	
 	private JLabel flightLabel;
 	private JLabel seatLabel;
 	private JLabel insuranceLabel;
@@ -106,10 +107,8 @@ public class AddOnsPanel{
 		bg.add(Eco);
 		bg.add(Bus);
 		
-		// event handler which listen to the input of user to printout the list of flights
-		search = new JButton("Search");
-		search.setFocusable(false);
-		dateLabel = new JLabel("Date: ");
+		dategoLabel = new JLabel("From: ");
+		datebackLabel = new JLabel("Until: ");
 		Properties pro = new Properties();
 		pro.put("text.today", "Today");
 		pro.put("text.month", "Month");
@@ -189,9 +188,9 @@ public class AddOnsPanel{
 		leftUp1Panel.add(froCountrycBox);					//done
 		leftUp1Panel.add(desLabel);
 		leftUp1Panel.add(desCountrycBox);					//done
-		leftUp2Panel.add(dateLabel);
+		leftUp2Panel.add(dategoLabel);
 		leftUp2Panel.add(departdatePicker);					//done
-		leftUp2Panel.add(dateLabel);
+		leftUp2Panel.add(datebackLabel);
 		leftUp2Panel.add(arrivaldatePicker);					//done
 		leftUp3Panel.add(classLabel);
 		leftUp3Panel.add(Eco);					//done
@@ -200,7 +199,6 @@ public class AddOnsPanel{
 		leftUp3Panel.add(Rou);					//done
 		leftUp3Panel.add(Sin);					//done
 
-		leftUp2Panel.add(search);
 		
 		// Left Panel's down child
 		
@@ -360,10 +358,6 @@ public class AddOnsPanel{
 	
 	void addPanelListener(ActionListener ListenForButton) {
 		button.addActionListener(ListenForButton);
-	}
-	
-	void addEconomyListener(ActionListener ListenForButton) {
-		search.addActionListener(ListenForButton);
 	}
 	
 }

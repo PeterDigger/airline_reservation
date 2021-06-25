@@ -85,7 +85,6 @@ public class Flight {
 	}
 	//------end of Airplane-----
 	
-	
 	public double getPrice() {
 		return price;
 	}

@@ -7,14 +7,11 @@ public class Airplane{ // the GUI seat will ask this for seat number
 	
 	private ArrayList<String> airplaneModelList;
 	private String flightClass;
-	private int airplaneSeatNo;
 	
 	public Airplane(boolean economy){
-		if (economy) {
-			this.airplaneSeatNo = 24;		//economy class
+		if (economy) {		//economy class
 			this.flightClass = "Economy ";
-		}else {
-			this.airplaneSeatNo = 50;		//business class
+		}else {		//business class
 			this.flightClass = "Business ";
 		}
 		airplaneModelList = new ArrayList<String>();
@@ -29,7 +26,6 @@ public class Airplane{ // the GUI seat will ask this for seat number
 	    } catch (FileNotFoundException e) {
 	        e.printStackTrace();
 	    }
-	
 	}
 	
 	public ArrayList<String> getAirplaneModeList() {
@@ -38,10 +34,6 @@ public class Airplane{ // the GUI seat will ask this for seat number
 	
 	public String getFlightClass() {
 		return flightClass;
-	}
-	
-	public int getAirplaneSeatNo(){
-		return airplaneSeatNo;
-	}
+	}	
 	
 }

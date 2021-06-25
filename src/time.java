@@ -6,10 +6,6 @@ public class time{ // uses as single and round trip
 	private String availableDepartureTime;
 	private String availableArrivalTime;
 
-	public time() {
-		
-	}
-	
 	public time(boolean rounded) { 
 	
 	    String generated = randomDate("00:01", "23:59"); 		// "2021062315:22" is our example

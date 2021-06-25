@@ -1,1 +1,0 @@
-Boeing 707,Airbus A300,Airbus A330,Airbus A350-900,Airbus A380-800,Boeing 747-400,Boeing 747-400F,Boeing 747-200,Boeing 737-800,Boeing 737 Classic

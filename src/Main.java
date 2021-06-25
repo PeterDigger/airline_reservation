@@ -34,9 +34,10 @@ public class Main {
 		
 		AddOnsPanel addOnsPanel = new AddOnsPanel();
 		AddOns addOns = new AddOns();
+		Flight flight = new Flight();
 		
 		Controller loginController = new Controller(login, mainFrame);
-		Controller panelController = new Controller(addOnsPanel, addOns);
+		Controller panelController = new Controller(addOnsPanel, addOns, flight);
 		//Controller panelController = new Controller(cards, addOns);
 		
 		
@@ -50,7 +51,7 @@ public class Main {
 		tp.setBackground(Color.decode("#2C386E"));
 		tp.addTab("Home", home, homePanel.getHomePanel());
 		tp.addTab("Booking", booking, addOnsPanel.getAddOnsPanel());
-		mainFrame.setSize(1080, 600);
+		mainFrame.setSize(1280, 600);
 		//frame.setResizable(false);
 		mainFrame.setVisible(false);
 

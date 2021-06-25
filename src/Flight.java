@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Flight {
 	private String flightID;
@@ -8,19 +9,11 @@ public class Flight {
 	private String flightClass;
 	private String departureDate;	
 	private String arrivalDate;
-	private int seatNo;
+	private String seatNo;
 	private double price;
 	
 	public Flight() {
 		
-	}
-
-	public String getFlightID() {
-		return flightID;
-	}
-
-	public void setFlightID(String flightID) {
-		this.flightID = flightID;
 	}
 
 	//------Location-----
@@ -53,7 +46,7 @@ public class Flight {
 	public String getArrivalTime() {
 		return arrivalTime;
 	}
-	
+
 	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
@@ -85,11 +78,11 @@ public class Flight {
 		this.flightClass = flightClass;
 	}
 	
-	public int getSeatNo() {
+	public String getSeatNo() {
 		return seatNo;
 	}
 	
-	public void setSeatNo(int seatNo) {
+	public void setSeatNo(String seatNo) {
 		this.seatNo = seatNo;
 	}
 	//------end of Airplane-----

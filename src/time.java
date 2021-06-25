@@ -1,45 +1,28 @@
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
-
 
 public class time{ // uses as single and round trip
 	
-	private int i = 0;
-	private ArrayList<String> availableDepartureTime;
-	private ArrayList<String> availableArrivalTime;
+	private String availableDepartureTime;
+	private String availableArrivalTime;
 
-	public time(boolean rounded /* need to grab time that user has input in GUI if round trip then will return one more as round trip date and time, also how to get the user input from another class without mention in constructor parameter here*/){
+	public time() {
+		
+	}
 	
-		Random rand = new Random(); //instance for out random class
-		int upperbound = 8; // prefer to use loop to display in the GUI
-	    int int_random = rand.nextInt(upperbound); 
+	public time(boolean rounded) { 
+	
+	    String generated = randomDate("00:01", "23:59"); 		// "2021062315:22" is our example
+	    availableDepartureTime = generated;
 	    
-	    String user_input1 = " " /*user's first input */;			// need help to how to input the user's input from GUI without mention in parameter
-	    String user_input2 = " " /*user's second input */;		// need help to how to input the user's input from GUI without mention in parameter
-	    
-	    do {
-	    	String generated = randomDate(user_input1, user_input2); 		// "2021062315:22" is our example
-	    	availableDepartureTime.add(generated.substring(8, 12));
-	    	i++;
-	    }while (i <= int_random);
-	    
-	    i = 0; // resets the i back to 0; to run loop
-
-	    if (rounded) {
-	    	do {
-			    int hours = Integer.parseInt(availableDepartureTime.get(i).substring(0,1)) + 8;
-			    int minutes = Integer.parseInt(availableDepartureTime.get(i).substring(3,4));
-			    availableArrivalTime.add(Integer.toString(hours) + ":" + Integer.toString(minutes)); //8 hours of flight time
-	    		i++;
-	    	}while (i <= int_random);
-	    }
+	    int hours = Integer.parseInt(availableDepartureTime.substring(0,1)) + 8;
+	    int minutes = Integer.parseInt(availableDepartureTime.substring(3,4));
+		availableArrivalTime = Integer.toString(hours) + ":" + Integer.toString(minutes); //8 hours of flight time
 	}
 	
 	private static String randomDate(String beginDate, String endDate) {
 		try {
-			SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHH:mm"); // generates the date and time
+			SimpleDateFormat format = new SimpleDateFormat("HH:mm"); // generates the date and time
 			Date start = format.parse (beginDate); // start date configuration
 			Date end = format.parse (endDate); // End date configuration
 			if (start.getTime() >= end.getTime()) {
@@ -62,11 +45,11 @@ public class time{ // uses as single and round trip
 		return rtn;
 	}
 
-	public ArrayList<String> getDepartureTime(){
+	public String getDepartureTime(){
 		return availableDepartureTime;
 	}
 
-	public ArrayList<String> getArrivalTime(){
+	public String getArrivalTime(){
 		return availableArrivalTime;
 	}
 

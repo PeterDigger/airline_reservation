@@ -2,18 +2,22 @@ import javax.swing.*;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.border.Border;
 
+import org.jdatepicker.JDatePicker;
 import org.jdatepicker.impl.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Calendar;
 import java.util.Date;
 
 
-public class AddOnsPanel {
+public class AddOnsPanel{
 	
+	private Airplane flight;
 	private Insurance insurance;
 	private Food food;
 	private Luggage luggage;
@@ -23,6 +27,9 @@ public class AddOnsPanel {
 	private JLabel desLabel;
 	private JLabel classLabel;
 	private JLabel tripLabel;
+	private JLabel dateLabel;
+	private JLabel flightLabel;
+	private JLabel seatLabel;
 	private JLabel insuranceLabel;
 	private JLabel foodLabel;
 	private JLabel luggageLabel;
@@ -30,13 +37,14 @@ public class AddOnsPanel {
 
 	private JComboBox froCountrycBox;
 	private JComboBox desCountrycBox;
+	private JComboBox flightCBox;
 	private JComboBox insuranceCBox;
 	private JComboBox foodCBox;
 	private JComboBox luggageCBox;
 	
 	private JButton search;
 	private JButton button;
-	private JRadioButton Eco, Bus, Rou, Sin;
+	private JRadioButton Eco, Bus, Rou, Sin, a, b, c, d;
 	
 	private JPanel Panel;
 	private JPanel leftPanel;
@@ -45,14 +53,24 @@ public class AddOnsPanel {
 	private JPanel leftUp2Panel;
 	private JPanel leftUp3Panel;
 	private JPanel leftDownPanel;
-	private JPanel leftDownUpPanel;
-	private JPanel leftDownDownPanel;
+	private JPanel leftDown1Panel;
+	private JPanel leftDown2Panel;
+	private JPanel leftDown3Panel;
+	private JPanel leftDown4Panel;
+	private JPanel leftDown5Panel;
+	private JPanel leftDown6Panel;
+	private JPanel leftDown7Panel;
+	private JPanel leftDown8Panel;
 	private JPanel rightPanel;
-	private JPanel rightUpPanel;
+	private JPanel rightUpPanel;	
 	private JPanel rightDownPanel;
-	private JScrollPane scroll;
+	
+	private JFrame ticketFrame;
 	
 	UtilDateModel model;
+	JDatePickerImpl departdatePicker;
+	JDatePickerImpl arrivaldatePicker;
+	
 	
 //	private JTextArea text;
 
@@ -93,19 +111,27 @@ public class AddOnsPanel {
 		// event handler which listen to the input of user to printout the list of flights
 		search = new JButton("Search");
 		search.setFocusable(false);
-		Properties p = new Properties();
-		p.put("text.today", "Today");
-		p.put("text.month", "Month");
-		p.put("text.year", "Year");
-		UtilDateModel model = new UtilDateModel();
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+		dateLabel = new JLabel("Date: ");
+		Properties pro = new Properties();
+		pro.put("text.today", "Today");
+		pro.put("text.month", "Month");
+		pro.put("text.year", "Year");
+		
+		UtilDateModel depart = new UtilDateModel();
+		JDatePanelImpl departPanel = new JDatePanelImpl(depart, pro);
+		departdatePicker = new JDatePickerImpl(departPanel, new DateLabelFormatter());
+		
+		UtilDateModel arrival = new UtilDateModel();
+		JDatePanelImpl arrivalPanel = new JDatePanelImpl(arrival, pro);
+		arrivaldatePicker = new JDatePickerImpl(arrivalPanel, new DateLabelFormatter());
 		
 		//Heavy meat
 		
+		flight = new Airplane(true);
+		flightLabel = new JLabel("Flight: ");
+		flightCBox = new JComboBox(flight.getAirplaneModeList().toArray());
 		
-		
-		
+		seatLabel = new JLabel("Please select your seat: ");
 		////-=============================
 		
 		insurance = new Insurance();
@@ -121,7 +147,7 @@ public class AddOnsPanel {
 		foodCBox = new JComboBox(food.getFoodList().toArray());
 		luggageCBox = new JComboBox(luggage.getLuggageList().toArray());
 		
-		button = new JButton("Next");
+		button = new JButton("Finish");
 		button.setFocusable(false);
 		
 		
@@ -135,16 +161,23 @@ public class AddOnsPanel {
 		leftUp1Panel = new JPanel();
 		leftUp2Panel = new JPanel();
 		leftUp3Panel = new JPanel();
-		leftDownPanel = new JPanel();
-		rightUpPanel = new JPanel();
-		rightDownPanel = new JPanel();
+		leftDownPanel = new JPanel(new GridLayout(8, 1));
+		leftDown1Panel = new JPanel();
+		leftDown2Panel = new JPanel();
+		leftDown3Panel = new JPanel();
+		leftDown4Panel = new JPanel();
+		leftDown5Panel = new JPanel();
+		leftDown6Panel = new JPanel();
+		leftDown7Panel = new JPanel();
+		leftDown8Panel = new JPanel();
+		rightUpPanel = new JPanel(new GridLayout(5, 1));
+		rightDownPanel = new JPanel(new GridLayout(5, 1));
 		rightPanel = new JPanel(new GridLayout(2, 1));
 		Panel = new JPanel(new GridLayout(1, 2));
 		
-		scroll = new JScrollPane(leftDownPanel);
 		
 		//properties of the panels
-		rightUpPanel.setLayout(new GridBagLayout());
+//		rightUpPanel.setLayout(new GridBagLayout());
 		
 		//instance for border of each section
 		Border blackline = BorderFactory.createLineBorder(Color.black);
@@ -155,22 +188,58 @@ public class AddOnsPanel {
 		
 		// Left Panel's up child
 		leftUp1Panel.add(froLabel);
-		leftUp1Panel.add(froCountrycBox);
+		leftUp1Panel.add(froCountrycBox);					//done
 		leftUp1Panel.add(desLabel);
-		leftUp1Panel.add(desCountrycBox);
-		leftUp2Panel.add(classLabel);
-		leftUp2Panel.add(Eco);
-		leftUp2Panel.add(Bus);
-		leftUp2Panel.add(tripLabel);
-		leftUp2Panel.add(Rou);
-		leftUp2Panel.add(Sin);
+		leftUp1Panel.add(desCountrycBox);					//done
+		leftUp2Panel.add(dateLabel);
+		leftUp2Panel.add(departdatePicker);					//done
+		leftUp2Panel.add(dateLabel);
+		leftUp2Panel.add(arrivaldatePicker);					//done
+		leftUp3Panel.add(classLabel);
+		leftUp3Panel.add(Eco);					//done
+		leftUp3Panel.add(Bus);					//done
+		leftUp3Panel.add(tripLabel);
+		leftUp3Panel.add(Rou);					//done
+		leftUp3Panel.add(Sin);					//done
+
 		leftUp2Panel.add(search);
 		
 		// Left Panel's down child
-
-		leftDownPanel.revalidate();
-		leftDownPanel.repaint();
 		
+		leftDown1Panel.add(flightLabel);
+		leftDown1Panel.add(flightCBox);
+		leftDown8Panel.add(seatLabel);
+		
+		for(int i=0 ; i<24 ; i++){
+		    JButton btn = new JButton();
+		    btn.setPreferredSize(new Dimension(20, 20));
+		    leftDown2Panel.add(btn);
+		}
+		for(int i=0 ; i<24 ; i++){
+		    JButton btn = new JButton();
+		    btn.setPreferredSize(new Dimension(20, 20));
+		    leftDown3Panel.add(btn);
+		}
+		for(int i=0 ; i<24 ; i++){
+		    JButton btn = new JButton();
+		    btn.setPreferredSize(new Dimension(20, 20));
+		    leftDown4Panel.add(btn);
+		}
+		for(int i=0 ; i<24 ; i++){
+		    JButton btn = new JButton();
+		    btn.setPreferredSize(new Dimension(20, 20));
+		    leftDown5Panel.add(btn);
+		}
+		for(int i=0 ; i<24 ; i++){
+		    JButton btn = new JButton();
+		    btn.setPreferredSize(new Dimension(20, 20));
+		    leftDown6Panel.add(btn);
+		}
+		for(int i=0 ; i<24 ; i++){
+		    JButton btn = new JButton();
+		    btn.setPreferredSize(new Dimension(20, 20));
+		    leftDown7Panel.add(btn);
+		}
 		
 		// loop to display available tickets
 
@@ -178,30 +247,33 @@ public class AddOnsPanel {
 		//Position the left panel's child
 		leftUpPanel.add(leftUp1Panel);
 		leftUpPanel.add(leftUp2Panel);
-		leftUpPanel.add(leftUp3Panel);		
+		leftUpPanel.add(leftUp3Panel);	
+		leftDownPanel.add(leftDown1Panel);
+		leftDownPanel.add(leftDown8Panel);
+		leftDownPanel.add(leftDown2Panel);
+		leftDownPanel.add(leftDown3Panel);
+		leftDownPanel.add(leftDown4Panel);
+		leftDownPanel.add(leftDown5Panel);
+		leftDownPanel.add(leftDown6Panel);
+		leftDownPanel.add(leftDown7Panel);
 		leftPanel.add(leftUpPanel);
 		leftPanel.add(leftDownPanel);
 		
 		//RIGHT SECTION ---------------
 		
 		//right up content
-		rightUpPanel.revalidate();
-		rightUpPanel.repaint();
-		
 		rightUpPanel.add(insuranceLabel);
 		rightUpPanel.add(insuranceCBox);
 		rightUpPanel.add(foodLabel);
 		rightUpPanel.add(foodCBox);
-		
+		rightUpPanel.add(luggageLabel);
+		rightUpPanel.add(luggageCBox);
+
+
 		//right down content
-		rightDownPanel.add(insuranceLabel);
-		rightDownPanel.add(insuranceCBox);
-		rightDownPanel.add(foodLabel);
-		rightDownPanel.add(foodCBox);
-		rightDownPanel.add(luggageLabel);
-		rightDownPanel.add(luggageCBox);
 		rightDownPanel.add(button);
 		rightDownPanel.add(selected);
+		
 		
 		//Position the right panel's child
 		rightPanel.add(rightUpPanel);
@@ -215,27 +287,14 @@ public class AddOnsPanel {
 		rightUpPanel.setBorder(blackline);
 		rightDownPanel.setBorder(blackline);
 		
-	// TEST SECTION
-		//addOnsPanel.setLayout(new BoxLayout(addOnsPanel, BoxLayout.Y_AXIS));
-		//addOnsPanel.setLayout(null);
-		//addOnsPanel.add(Box.createRigidArea(new Dimension(0,50)));
-		//addOnsPanel.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
-		//addOnsPanel.add(Box.createHorizontalGlue());
-		//addOnsPanel.add(Box.createVerticalGlue());		
-		//text = new JTextArea(20, 40);
-		//text.setText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
-		//text.setWrapStyleWord(true);
-		//text.setLineWrap(true);
-		//text.setOpaque(false);
-		//text.setEditable(false);
-		//text.setFocusable(false);	
-		
 //// END of Position -----------------------------------------------------------
-
-		
 		
 	}
-
+	
+	public JFrame getTicketFrame() {
+		return ticketFrame;
+	}
+	
 	public JPanel getAddOnsPanel() {
 		return Panel;
 	}
@@ -259,6 +318,47 @@ public class AddOnsPanel {
 		
 		return price;
 	}
+	
+	// SEAT -------------------------------
+	public String getSelectedOrigin() {
+		return country.getCountryList().get(froCountrycBox.getSelectedIndex());
+	}
+	
+	public String getSelectedDestination() {
+		return country.getCountryList().get(desCountrycBox.getSelectedIndex());
+	}
+	
+	public String getSelectedModel() {
+		return flight.getAirplaneModeList().get(flightCBox.getSelectedIndex());
+	}
+	
+	public boolean getEconomy() {
+		boolean x = false;
+		if(Eco.isSelected()) return x = true;
+		return x;
+	}
+	
+	public boolean getTrip() {
+		boolean x = false;
+		if (Rou.isSelected()) return x = true;
+		return x;
+	}
+	
+	public String getSelectedDepart() {
+		Date departselectedDate = (Date) departdatePicker.getModel().getValue();
+	    DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+	    String reportDate = df.format(departselectedDate);
+		return reportDate;
+	}
+	
+	public String getSelectedArrival() {
+		Date arrivalselectedDate = (Date) arrivaldatePicker.getModel().getValue();
+	    DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+	    String reportDate = df.format(arrivalselectedDate);
+		return reportDate;
+	}
+	
+	//SEAT -------------------------------
 	
 	void addPanelListener(ActionListener ListenForButton) {
 		button.addActionListener(ListenForButton);

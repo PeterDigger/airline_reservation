@@ -1,4 +1,11 @@
 # Airline Reservation Project
+
+### Description:
+This is a formal group project of IT22103 Object-Oriented Programming. 
+
+### Status:
+✔️ Completed (Archived)
+
 Due Date: 28 June 2021 <br>
 
 _Contributors_:
